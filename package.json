@@ -1,38 +1,31 @@
 {
-  "name": "cart",
+  "name": "ts-react",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node ./bin/www",
-    "build": "node. /node_modules/gulp/bin/gulp build",
-    "dev": "node ./node_modules/gulp/bin/gulp develop"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "lam.vuxuan",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuxuanlam/react-typescript.git"
+  },
+  "author": "lamvx",
   "license": "ISC",
-  "engines": {
-    "node": "8.11.1"
+  "bugs": {
+    "url": "https://github.com/vuxuanlam/react-typescript/issues"
+  },
+  "homepage": "https://github.com/vuxuanlam/react-typescript#readme",
+  "dependencies": {
+    "@types/react": "^16.4.7",
+    "@types/react-dom": "^16.0.6",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "webpack": "^4.16.4"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-preset-env": "^1.7.0",
-    "css-loader": "^1.0.0",
-    "file-loader": "^1.1.11",
-    "html-webpack-plugin": "^3.2.0",
-    "install": "^0.12.1",
-    "mini-css-extract-plugin": "^0.4.1",
-    "npm": "^6.3.0",
-    "style-loader": "^0.21.0",
-    "typescript": "^3.0.1",
-    "url-loader": "^1.0.1",
-    "webpack": "^4.16.4",
-    "webpack-cli": "^3.1.0",
-    "webpack-stream": "^5.1.0"
-  },
-  "dependencies": {
-    "babel-preset-react": "^6.24.1"
+    "source-map-loader": "^0.2.3",
+    "typescript": "^3.0.1"
   }
 }
