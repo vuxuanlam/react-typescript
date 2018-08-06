@@ -1,44 +1,34 @@
-const webpack = require('webpack');
-const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const { CheckerPlugin } = require('awesome-typescript-loader')const PRODUCT = JSON.parse(process.env.PROD_ENV || '0');
-const targetPath = __dirname + '/built';
-
-const config = [
-  {
-    name: 'React Client Package',
-    entry: {
-      app : './index.js'
-    },
+module.exports = {
+    entry: "./src/index.tsx",
     output: {
-      filename: '[name].js',
-      path: path.resolve(targetPath + '/public/js')
+        filename: "bundle.js",
+        path: __dirname + "/dist"
     },
-    watch: true,
-    mode: 'development',
+
+    // Enable sourcemaps for debugging webpack's output.
+    devtool: "source-map",
+
+    resolve: {
+        // Add '.ts' and '.tsx' as resolvable extensions.
+        extensions: [".ts", ".tsx", ".js", ".json"]
+    },
+
     module: {
-      rules: [
-        // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-        { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
-        // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-        // { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
-        { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader') },
-        { test: /\.svg$/, loader: "url-loader?limit=10000&mimetype=image/svg+xml" }
+        rules: [
+            // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+
+            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
         ]
     },
-    resolve: {
-        // modulesDirectories: ['node_modules', 'components'],
-        extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js', '.jsx']
-    },
-    plugins: [
-        new webpack.DefinePlugin({
-          'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-        }),
-        // new webpack.NoErrorsPlugin(),
-        new CheckerPlugin(),
-        new ExtractTextPlugin('style.css', { allChunks: true }),
-    ],
-  }
-];
 
-module.exports = config;
+    // When importing a module whose path matches one of the following, just
+    // assume a corresponding global variable exists and use that instead.
+    // This is important because it allows us to avoid bundling all of our
+    // dependencies, which allows browsers to cache those libraries between builds.
+    externals: {
+        "react": "React",
+        "react-dom": "ReactDOM"
+    }
+};
