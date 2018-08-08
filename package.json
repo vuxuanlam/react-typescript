@@ -19,8 +19,10 @@
   "dependencies": {
     "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.6",
+    "@types/uuid": "^3.4.3",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "uuid": "^3.3.2",
     "webpack": "^4.16.4"
   },
   "devDependencies": {
