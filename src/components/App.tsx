@@ -33,6 +33,7 @@ export class App extends React.Component<any, any> {
         })
         this.setState(todoArr);
     }
+
    onChange = (e: any) => {
         let lam = e.target.name;
         let value = e.target.value;
@@ -48,7 +49,7 @@ export class App extends React.Component<any, any> {
             if(data === element.id)
                 result = index;
             return result;
-        });
+         });
         if(result  !== -1 )
         {
             deleteArr.splice(result,1);
@@ -84,7 +85,7 @@ export class App extends React.Component<any, any> {
                     <legend>Form title</legend>
 
                     <div className="form-group">
-                        <input type="text" className="form-control" name='lam' id="" placeholder="Input field" onChange={this.onChange} value={this.state.lam} />
+                        <input type="text" className="form-control" name='lam' id="" placeholder="Input field" onChange={this.onChange} value={this.state.lam} required />
                     </div>
 
                     <button type="submit" className="btn btn-primary" >Add</button>

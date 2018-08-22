@@ -1,13 +1,23 @@
 {
     "compilerOptions": {
         "outDir": "./dist/",
-        "sourceMap": true,
+        "rootDir": "./src",
+        "baseUrl": "./src",
         "noImplicitAny": true,
-        "module": "commonjs",
+        "sourceMap": true,
+        "module": "es6",
         "target": "es5",
-        "jsx": "react"
+        "jsx": "react",
+        "allowJs": true,
+        "allowSyntheticDefaultImports": false,
+        "experimentalDecorators": true
     },
     "include": [
-        "./src/**/*"
+        "**/*.ts",
+        "**/*.tsx"
+    ],
+    "exclude": [
+        "./dist",
+        "webpack.config.js"
     ]
 }
