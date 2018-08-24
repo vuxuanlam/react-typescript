@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { App } from "./components/App";
+import  SimpleApp  from "./components/SimpleApp";
 
 ReactDOM.render(
-    <App/>,
+    <SimpleApp/>,
     document.getElementById("example")
 );

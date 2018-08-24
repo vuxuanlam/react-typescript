@@ -1,6 +1,6 @@
 export interface ConfigType {
     root: string;
-    port: string;
+    port: number;
     session: {
       secret: string;
       resave: boolean;
@@ -8,11 +8,5 @@ export interface ConfigType {
       cookie: {
         maxAge: number;
       };
-    };
-    db?: {
-      uri: string;
-      port: number;
-      dbPath: string;
-      dbName: string;
     };
   }

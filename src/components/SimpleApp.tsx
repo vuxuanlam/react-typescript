@@ -2,7 +2,7 @@ import * as React from "react";
 import Todo from './Todo';
 const uuidv4 = require('uuid/v4');
 
-export class App extends React.Component<any, any> {
+export default class SimpleApp extends React.Component<any, any> {
     constructor(props: any) {
         super(props)
         this.state = {

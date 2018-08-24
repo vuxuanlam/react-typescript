@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as session from 'express-session';
 
 import { ConfigType } from './config/config';
+import { dirname } from 'path';
 const path = require('path');
 const expressValidator = require('express-validator');
 const glob = require('glob');
@@ -16,8 +17,9 @@ class AppServer {
     public initalize(app: any, config: ConfigType) {
         this.app = app;
         this.config = config;
-        app.set('views', path.join(config.root, 'views'));
-        app.set('views engine', 'ejs');
+        app.set('views', path.join(__dirname, '../src/views'));
+        console.log(__dirname);
+        app.set('view engine', 'ejs');
         app.use(expressValidator());
         app.use(session({
             secret: config.session.secret,
@@ -33,7 +35,7 @@ class AppServer {
         }
         ));
         let routes = glob.sync(__dirname + '/routes/*.+(js|ts|jsx|tsx)');
-        routes.forEach(function (routes: any) {
+        routes.forEach( function (routes: any) {
             require(routes)(app);
         });
         app.use((req: any, res: any, next: any) => {

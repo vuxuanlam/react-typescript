@@ -10,7 +10,7 @@ export function init() {
     app = express();
     config = {
         root: path.normalize(__dirname),
-        port: process.env.PORT,
+        port: 4000,
         session: {
             secret: 'abcdenhe',
             resave: false,
