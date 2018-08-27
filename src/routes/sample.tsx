@@ -2,14 +2,16 @@ import * as express from 'express';
 import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 
-import SimpleApp from '../components/SimpleApp';
+import SampleApp from '../components/SampleApp';
 
 let router = express.Router();
 
 module.exports = function (app: express.Express) {
-    app.use('/simple', router);
+    app.use('/sample', router);
     router.get('/', function (req, res) {
-        res.send("hello server");
+        res.render('sample', {
+            title: 'React Router Example'
+        });
     })
 };
 

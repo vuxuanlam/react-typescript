@@ -28,7 +28,7 @@ class AppServer {
             cookie: { maxAge: config.session.cookie.maxAge }
         }));
         const cacheTime = 10000;
-        app.use(express.static(path.join(config.root, '.', 'public'), {
+        app.use(express.static(path.join(__dirname), {
             maxAge: cacheTime,
             lastModified: true,
             redirect: true
@@ -54,7 +54,7 @@ class AppServer {
 
     public start() {
         this.app.listen(this.config.port, () => {
-            return ('Express server listening on port ' + this.config.port);
+            console.log('Express server listening on port ' + this.config.port);
         })
     }
 }
