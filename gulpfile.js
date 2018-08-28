@@ -2,9 +2,8 @@ var gulp = require('gulp'),
     nodemon = require('gulp-nodemon'),
     plumber = require('gulp-plumber'),
     runSequence = require('run-sequence'),
-    gulpWebpack = require('webpack-stream'),
-    webpackConfig = require('./webpack.config.js'),
-    webpack = require('webpack');
+    webpack = require('webpack-stream'),
+    path = require('path');
 
 var targetPath = './dist';
 var exec = require('child_process').exec;
@@ -33,7 +32,15 @@ gulp.task('nodemon', (callback) => {
         })
 });
 
+gulp.task('webpack', () => {
+    return gulp.src('dummy')
+    .pipe(webpack( require('./webpack.config.js') ))
+    .pipe(gulp.dest('dist/')); 
+});
 
+gulp.task('develop', () => {
+    return runSequence(['tsc'],['webpack','nodemon']);
+});
 
 
 

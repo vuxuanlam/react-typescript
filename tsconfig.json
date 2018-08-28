@@ -21,8 +21,6 @@
     "exclude": [
         "./dist",
         "webpack.config.js",
-        "/src/components",
-        "/src/config",
         "./node_modules",
         "/src/routes"
     ]
