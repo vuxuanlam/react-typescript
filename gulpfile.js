@@ -8,6 +8,13 @@ var gulp = require('gulp'),
 var targetPath = './dist';
 var exec = require('child_process').exec;
 
+gulp.task('copy-assets', () => {
+    gulp.src(
+      ['src/public/**/', '!src/views/**/' ],
+      { base: './src' }
+    ).pipe(gulp.dest(targetPath));
+  });
+  
 gulp.task('tsc', function (cb) {
     return exec('node ./node_modules/typescript/bin/tsc', function (err, stdout, stderr) {
         console.log(stdout);
@@ -35,11 +42,11 @@ gulp.task('nodemon', (callback) => {
 gulp.task('webpack', () => {
     return gulp.src('dummy')
     .pipe(webpack( require('./webpack.config.js') ))
-    .pipe(gulp.dest('dist/')); 
+    .pipe(gulp.dest('dist/public/js')); 
 });
 
 gulp.task('develop', () => {
-    return runSequence(['tsc'],['webpack','nodemon']);
+    return runSequence(['copy-assets'],['tsc'],['webpack','nodemon']);
 });
 
 

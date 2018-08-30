@@ -28,14 +28,14 @@ class AppServer {
             cookie: { maxAge: config.session.cookie.maxAge }
         }));
         const cacheTime = 10000;
-        app.use(express.static(path.join(__dirname), {
+        app.use(express.static(path.join(config.root, 'public'), {
             maxAge: cacheTime,
             lastModified: true,
             redirect: true
         }
         ));
         let routes = glob.sync(__dirname + '/routes/*.+(js|ts|jsx|tsx)');
-        routes.forEach( function (routes: any) {
+        routes.forEach(function (routes: any) {
             require(routes)(app);
         });
         app.use((req: any, res: any, next: any) => {
