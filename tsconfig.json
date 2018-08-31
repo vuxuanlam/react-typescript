@@ -1,13 +1,27 @@
 {
     "compilerOptions": {
         "outDir": "./dist/",
-        "sourceMap": true,
+        "rootDir": "./src",
+        "baseUrl": "./src",
         "noImplicitAny": true,
+        "sourceMap": true,
         "module": "commonjs",
         "target": "es5",
-        "jsx": "react"
+        "jsx": "react",
+        "allowJs": true,
+        "allowSyntheticDefaultImports": false,
+        "experimentalDecorators": true,
+        "declaration": false,
+        "lib": ["dom", "es2015.promise", "es5", "esnext"],
     },
     "include": [
-        "./src/**/*"
+        "**/*.ts",
+        "**/*.tsx"
+    ],
+    "exclude": [
+        "./dist",
+        "webpack.config.js",
+        "./node_modules",
+        "/src/routes"
     ]
 }
