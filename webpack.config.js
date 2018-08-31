@@ -2,7 +2,8 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        "react-sample": './src/index.tsx'
+        "react-sample": './src/index.tsx',
+        "color-sample":'./src/color.tsx'
     },
     module: {
         rules: [
