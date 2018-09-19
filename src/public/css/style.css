@@ -25,3 +25,7 @@
   .active{
     border: solid 3px black;
   }
+
+  .content{
+    color: black;
+  }

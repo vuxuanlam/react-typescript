@@ -13,8 +13,10 @@ export default class ColorApp extends React.Component<any, any>{
         }
     }
 
-    onSetColor(params : any){
-        console.log(params);
+    onSetColor = (params: any) => {
+        this.setState({
+            color: params
+        });
     }
 
     render() {
@@ -30,7 +32,7 @@ export default class ColorApp extends React.Component<any, any>{
                     </div>
                 </div>
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-50">
-                    <Result />
+                    <Result color={this.state.color} />
                 </div>
             </div>
         )
