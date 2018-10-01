@@ -21,6 +21,7 @@ class ColorPicker extends React.Component<any, any> {
     public render() {
         var eleColor = this.state.colors.map((color: any, index: any) => {
             return <span
+                id = "color-picker"
                 key={index}
                 style={this.showColor(color)}
                 className={this.props.color === color ? 'active' : ''}

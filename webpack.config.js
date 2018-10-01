@@ -3,7 +3,8 @@ const path = require('path');
 module.exports = {
     entry: {
         "react-sample": './src/index.tsx',
-        "color-sample":'./src/color.tsx'
+        "color-sample":'./src/color.tsx',
+        "taskManager-sample":'./src/taskManager.tsx'
     },
     module: {
         rules: [
