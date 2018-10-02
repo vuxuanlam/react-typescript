@@ -51,10 +51,16 @@ class TaskManagerApp extends React.Component<any, any> {
         });
     }
 
+    onCloseForm = () => {
+        this.setState({
+            isDisplayForm: false
+        });
+    }
+
     public render() {
         let { tasks, isDisplayForm } = this.state; // let tasks= this.state.tasks; isDisplayForm = this.state.isDisplayForm
         // console.log(tasks);
-        let eleTaskForm = isDisplayForm ? <TaskForm /> : "";
+        let eleTaskForm = isDisplayForm ? <TaskForm onCloseForm = {this.onCloseForm} /> : "";
         return (
             <div className="container">
                 <div className="text-center">
