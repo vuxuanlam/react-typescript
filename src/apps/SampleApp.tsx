@@ -1,5 +1,5 @@
 import * as React from "react";
-import Todo from './Todo';
+import Todo from '../components/Todo';
 const uuidv4 = require('uuid/v4');
 
 export default class SampleApp extends React.Component<any, any> {

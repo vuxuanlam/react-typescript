@@ -1,8 +1,8 @@
 import * as React from "react";
-import ColorPicker from './ColorPicker';
-import SizeSetting from './SizeSetting';
-import Reset from './Reset';
-import Result from './Result';
+import ColorPicker from '../components/ColorPicker';
+import SizeSetting from '../components/SizeSetting';
+import Reset from '../components/Reset';
+import Result from '../components/Result';
 
 export default class ColorApp extends React.Component<any, any>{
     constructor(props: any) {
