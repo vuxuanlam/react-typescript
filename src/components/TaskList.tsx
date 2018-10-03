@@ -2,11 +2,13 @@ import * as React from "react";
 import TaskItem from "./TaskItem";
 
 class TaskList extends React.Component<any, any>{
+
     public render() {
         let tasks = this.props.tasks;  //{ tasks } = this.props;
         let eleTask = tasks.map((task: any, index: any) => {
-            return <TaskItem key={task.id} index={index+1} task={task} />;
+            return <TaskItem key={task.id} index={index + 1} task={task} onUpdateStatus={this.props.onUpdateStatus} onEditTask={this.props.onEditTask} onDeleteTask={this.props.onDeleteTask} />;
         });
+
         return (
             <div className="row mt-15">
 
@@ -36,7 +38,7 @@ class TaskList extends React.Component<any, any>{
                                 </td>
                                 <td></td>
                             </tr>
-                        {eleTask}
+                            {eleTask}
                         </tbody>
                     </table>
                 </div>
@@ -44,4 +46,5 @@ class TaskList extends React.Component<any, any>{
         )
     }
 }
+
 export default TaskList;
