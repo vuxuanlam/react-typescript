@@ -19,7 +19,7 @@ export default class SampleApp extends React.Component<any, any> {
             ],
 
             lam: '',
-             
+
         }
         // this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -34,33 +34,32 @@ export default class SampleApp extends React.Component<any, any> {
         this.setState(todoArr);
     }
 
-   onChange = (e: any) => {
+    onChange = (e: any) => {
         let lam = e.target.name;
         let value = e.target.value;
         console.log(value);
         this.setState({ [lam]: value });
     }
 
-    onDelete = (data :any) =>{
+    onDelete = (data: any) => {
         console.log(data);
-        var result = -1 ;
+        var result = -1;
         var deleteArr = this.state.todos;
-        deleteArr.forEach((element:any, index :any) => {
-            if(data === element.id)
+        deleteArr.forEach((element: any, index: any) => {
+            if (data === element.id)
                 result = index;
             return result;
-         });
-        if(result  !== -1 )
-        {
-            deleteArr.splice(result,1);
+        });
+        if (result !== -1) {
+            deleteArr.splice(result, 1);
         }
-        this.setState({todos : deleteArr});
-    
+        this.setState({ todos: deleteArr });
+
     }
 
     public render() {
         var element = this.state.todos.map((todo: any, index: string) => {
-            return <Todo lam={todo} key={index} onDelete = {this.onDelete} />
+            return <Todo lam={todo} key={index} onDelete={this.onDelete} />
 
         })
         return <div className="panel panel-default">
