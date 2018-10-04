@@ -2,9 +2,29 @@ import * as React from "react";
 import TaskItem from "./TaskItem";
 
 class TaskList extends React.Component<any, any>{
+    constructor(props: any) {
+        super(props)
+        this.state = {
+            filterName: "",
+            filterStatus: "-1"
+        }
+    }
+
+    onChange = (event: any) => {
+        let { name, value } = event.target;
+        this.props.onFilter(
+            name === "filterName" ? value : this.state.filterName,
+            name === "filterStatus" ? value : this.state.filterStatus
+        )
+        this.setState({
+            [name]: value
+        })
+    }
+
 
     public render() {
         let tasks = this.props.tasks;  //{ tasks } = this.props;
+        let { filterName, filterStatus } = this.state;
         let eleTask = tasks.map((task: any, index: any) => {
             return <TaskItem key={task.id} index={index + 1} task={task} onUpdateStatus={this.props.onUpdateStatus} onEditTask={this.props.onEditTask} onDeleteTask={this.props.onDeleteTask} />;
         });
@@ -27,10 +47,10 @@ class TaskList extends React.Component<any, any>{
                             <tr>
                                 <td></td>
                                 <td>
-                                    <input type="text" className="form-control" name="filterName" />
+                                    <input type="text" className="form-control" name="filterName" value={filterName} onChange={this.onChange} />
                                 </td>
                                 <td>
-                                    <select name="filterStatus" className="form-control">
+                                    <select name="filterStatus" className="form-control" value={filterStatus} onChange={this.onChange}>
                                         <option value={-1}>All</option>
                                         <option value={0}>Desabled</option>
                                         <option value={1}>Activated</option>

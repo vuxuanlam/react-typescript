@@ -4,10 +4,40 @@ class TaskForm extends React.Component<any, any>{
     constructor(props: any) {
         super(props)
         this.state = {
+            id: "",
             name: "",
             status: false
         }
     }
+
+    componentWillMount() {
+        // console.log("abc")
+        if (this.props.taskEditing) {
+            this.setState({
+                id: this.props.taskEditing.id,
+                name: this.props.taskEditing.name,
+                status: this.props.taskEditing.status
+            })
+        }
+    }
+
+    componentWillReceiveProps(nextProps: any) {
+        // console.log(nextProps);
+        if (nextProps && nextProps.taskEditing) {
+            this.setState({
+                id: nextProps.taskEditing.id,
+                name: nextProps.taskEditing.name,
+                status: nextProps.taskEditing.status
+            })
+        } else if (!nextProps.taskEditing) {
+            this.setState({
+                id: "",
+                name: "",
+                status: false
+            })
+        }
+    }
+
     onCloseForm = () => {
         this.props.onCloseForm();
     }
@@ -37,11 +67,12 @@ class TaskForm extends React.Component<any, any>{
     }
 
     public render() {
+        let { id } = this.state;
         return (
             <div className="panel panel-info">
                 <div className="panel-heading">
-                    <h3 className="panel-title">Add New Task
-                            <span className="fa fa-times-circle text-right" onClick={this.onCloseForm} ></span>
+                    <h3 className="panel-title"> {id === "" ? "Add New Task" : "Edit Task"}
+                        <span className="fa fa-times-circle text-right" onClick={this.onCloseForm} ></span>
                     </h3>
                 </div>
                 <div className="panel-body">
