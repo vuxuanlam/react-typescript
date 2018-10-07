@@ -1,14 +1,32 @@
 import * as React from "react";
 
 class TaskControl extends React.Component<any, any> {
+    constructor(props: any) {
+        super(props)
+        this.state = {
+            keyword: ""
+        };
+    }
+
+    onChange = (event: any) => {
+        let { name, value } = event.target;
+        this.setState({
+            [name] : value
+        }); 
+    }
+
+    onSearch = () => {
+        this.props.onSearch(this.state.keyword);
+    }
+
     public render() {
         return (
             <div className="row mt-15">
                 <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <div className="input-group">
-                        <input type="text" name="keyword" className="form-control" placeholder="Type Keyword" />
+                        <input type="text" name="keyword" className="form-control" placeholder="Type Keyword" onChange={this.onChange} />
                         <span className="input-group-btn">
-                            <button type="button" className="btn btn-primary">
+                            <button type="button" className="btn btn-primary" onClick={this.onSearch}>
                                 <span className="fa fa-search mr-5"></span>
                                 Search
                 </button>

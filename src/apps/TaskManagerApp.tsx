@@ -16,7 +16,8 @@ class TaskManagerApp extends React.Component<any, any> {
             filter: {
                 name: "",
                 status: "-1"
-            }
+            },
+            keyword: ""
         }
     }
 
@@ -122,6 +123,12 @@ class TaskManagerApp extends React.Component<any, any> {
         // console.log(id);
     }
 
+    onSearch = (keyword: any) => {
+        this.setState({
+            keyword : keyword
+        });
+     }
+
     onFilter = (filterName: any, filterStatus: any) => {
         filterStatus = parseInt(filterStatus, 10);
         this.setState({
@@ -144,7 +151,7 @@ class TaskManagerApp extends React.Component<any, any> {
     }
 
     public render() {
-        let { tasks, isDisplayForm, taskEditing, filter } = this.state; // let tasks= this.state.tasks; isDisplayForm = this.state.isDisplayForm
+        let { tasks, isDisplayForm, taskEditing, filter, keyword } = this.state; // let tasks= this.state.tasks; isDisplayForm = this.state.isDisplayForm
         if (filter) {
             if (filter.name) {
                 tasks = tasks.filter((task: any) => {
@@ -158,6 +165,12 @@ class TaskManagerApp extends React.Component<any, any> {
                     return task.status === (filter.status === 1 ? true : false)
                 }
             });
+        }
+
+        if(keyword) {
+            tasks = tasks.filter((task: any) =>{
+                return task.name.toLowerCase().indexOf(keyword) !==-1;
+            })
         }
         let eleTaskForm = isDisplayForm ? <TaskForm onSubmit={this.onSubmit} onCloseForm={this.onCloseForm} taskEditing={taskEditing} /> : "";
 
@@ -173,7 +186,7 @@ class TaskManagerApp extends React.Component<any, any> {
                     </div>
                     <div className={isDisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8" : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
                         <button type="button" className="btn btn-primary mr-20" onClick={this.onToggleForm}>Add New Task</button>
-                        <TaskControl />
+                        <TaskControl onSearch={this.onSearch} />
                         <TaskList onUpdateStatus={this.onUpdateStatus} onEditTask={this.onEditTask} onDeleteTask={this.onDeleteTask} onFilter={this.onFilter} tasks={tasks} />
                     </div>
                 </div>
