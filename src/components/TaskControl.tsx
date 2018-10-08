@@ -4,22 +4,40 @@ class TaskControl extends React.Component<any, any> {
     constructor(props: any) {
         super(props)
         this.state = {
-            keyword: ""
+            keyword: "",
+            sort: {
+                by: "name",
+                value: 1
+            }
         };
     }
 
     onChange = (event: any) => {
         let { name, value } = event.target;
         this.setState({
-            [name] : value
-        }); 
+            [name]: value
+        });
     }
 
     onSearch = () => {
         this.props.onSearch(this.state.keyword);
     }
 
+    onSort = (sortBy: any, sortValue: any) => {
+        this.setState({
+            sort: {
+                by: sortBy,
+                value: sortValue
+            }
+        })
+        // , () => console.log(this.state.sort.by + "-" + this.state.sort.value));
+        this.props.onSort(this.state.sort.by, this.state.sort.value);
+    }
+
+
+
     public render() {
+        let { sort } = this.state;
         return (
             <div className="row mt-15">
                 <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -40,31 +58,31 @@ class TaskControl extends React.Component<any, any> {
                 <span className="caret ml-5"></span>
                         </button>
                         <ul className="dropdown-menu ">
-                            <li>
-                                <a role="button" className="sort-selected">
+                            <li onClick={() => this.onSort("name", 1)}>
+                                <a role="button" className={(sort.by === "name" && sort.value === 1) ? "sort-selected" : ""}>
                                     <span className="fa fa-sort-alpha-asc mr-5 pr-5">Name A-Z</span>
                                 </a>
                             </li>
-                            <li>
-                                <a role="button">
+                            <li onClick={() => this.onSort("name", -1)}>
+                                <a role="button" className={(sort.by === "name" && sort.value === -1) ? "sort-selected" : ""}>
                                     <span className="fa fa-sort-alpha-asc pr-5">Name Z-A</span>
                                 </a>
                             </li>
                             <li role="separator" className="divider"></li>
-                            <li>
-                                <a role="button">
+                            <li onClick={() => this.onSort("status", 1)}>
+                                <a role="button" className={(sort.by === "status" && sort.value === 1) ? "sort-selected" : ""}>
                                     Activated Status
                         </a>
                             </li>
-                            <li>
-                                <a role="button">
+                            <li onClick={() => this.onSort("status", -1)} >
+                                <a role="button" className={(sort.by === "status" && sort.value === -1) ? "sort-selected" : ""}>
                                     Disabled Status
                         </a>
                             </li>
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }

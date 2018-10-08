@@ -17,7 +17,11 @@ class TaskManagerApp extends React.Component<any, any> {
                 name: "",
                 status: "-1"
             },
-            keyword: ""
+            keyword: "",
+            sort: {
+                by: "",
+                value: 1
+            }
         }
     }
 
@@ -125,9 +129,13 @@ class TaskManagerApp extends React.Component<any, any> {
 
     onSearch = (keyword: any) => {
         this.setState({
-            keyword : keyword
+            keyword: keyword
         });
-     }
+    }
+
+    onSort = (sortBy: any, sortValue: any) => {
+        console.log(sortBy, sortValue);
+    }
 
     onFilter = (filterName: any, filterStatus: any) => {
         filterStatus = parseInt(filterStatus, 10);
@@ -167,10 +175,24 @@ class TaskManagerApp extends React.Component<any, any> {
             });
         }
 
-        if(keyword) {
-            tasks = tasks.filter((task: any) =>{
-                return task.name.toLowerCase().indexOf(keyword) !==-1;
+        if (keyword) {
+            tasks = tasks.filter((task: any) => {
+                return task.name.toLowerCase().indexOf(keyword) !== -1;
             })
+        }
+        if (sortBy === "name") {
+            tasks.sort((a, b) => {
+                if (a.name > b.name) return sortValue;
+                else if (a.name < b.name) return -sortValue;
+                else return 0;
+            });
+        }
+        else (sortBy === "value"){
+            tasks.sort((a, b) => {
+                if (a.name > b.name) return -sortValue;
+                else if (a.name < b.name) return sortValue;
+                else return 0;
+            });
         }
         let eleTaskForm = isDisplayForm ? <TaskForm onSubmit={this.onSubmit} onCloseForm={this.onCloseForm} taskEditing={taskEditing} /> : "";
 
@@ -186,7 +208,7 @@ class TaskManagerApp extends React.Component<any, any> {
                     </div>
                     <div className={isDisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8" : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
                         <button type="button" className="btn btn-primary mr-20" onClick={this.onToggleForm}>Add New Task</button>
-                        <TaskControl onSearch={this.onSearch} />
+                        <TaskControl onSearch={this.onSearch} onSort={this.onSort} />
                         <TaskList onUpdateStatus={this.onUpdateStatus} onEditTask={this.onEditTask} onDeleteTask={this.onDeleteTask} onFilter={this.onFilter} tasks={tasks} />
                     </div>
                 </div>
