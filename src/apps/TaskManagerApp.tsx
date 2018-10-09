@@ -4,6 +4,7 @@ import TaskControl from "../components/TaskControl";
 import TaskList from "../components/TaskList";
 import TaskItem from "components/TaskItem";
 import { filter } from "minimatch";
+import { findIndex } from "lodash";
 const uuidv4 = require('uuid/v4');
 
 class TaskManagerApp extends React.Component<any, any> {
@@ -94,7 +95,11 @@ class TaskManagerApp extends React.Component<any, any> {
     onUpdateStatus = (id: any) => {
         // console.log(id)
         let { tasks } = this.state;
-        let index = this.findIndex(id);
+        // let index = this.findIndex(id);
+        let index = findIndex(tasks, (task: any) => {
+            return task.id === id;
+        })
+
         if (index !== -1) {
             tasks[index].status = !tasks[index].status;
             this.setState({
@@ -134,7 +139,13 @@ class TaskManagerApp extends React.Component<any, any> {
     }
 
     onSort = (sortBy: any, sortValue: any) => {
-        console.log(sortBy, sortValue);
+        // console.log(sortBy, sortValue);
+        this.setState({
+            sort: {
+                by: sortBy,
+                value: sortValue
+            }
+        })
     }
 
     onFilter = (filterName: any, filterStatus: any) => {
@@ -159,7 +170,7 @@ class TaskManagerApp extends React.Component<any, any> {
     }
 
     public render() {
-        let { tasks, isDisplayForm, taskEditing, filter, keyword } = this.state; // let tasks= this.state.tasks; isDisplayForm = this.state.isDisplayForm
+        let { tasks, isDisplayForm, taskEditing, filter, keyword, sort } = this.state; // let tasks= this.state.tasks; isDisplayForm = this.state.isDisplayForm
         if (filter) {
             if (filter.name) {
                 tasks = tasks.filter((task: any) => {
@@ -180,17 +191,17 @@ class TaskManagerApp extends React.Component<any, any> {
                 return task.name.toLowerCase().indexOf(keyword) !== -1;
             })
         }
-        if (sortBy === "name") {
-            tasks.sort((a, b) => {
-                if (a.name > b.name) return sortValue;
-                else if (a.name < b.name) return -sortValue;
+        if (sort.by === "name") {
+            tasks.sort((a: any, b: any) => {
+                if (a.name > b.name) return sort.value;
+                else if (a.name < b.name) return -sort.value;
                 else return 0;
             });
         }
-        else (sortBy === "value"){
-            tasks.sort((a, b) => {
-                if (a.name > b.name) return -sortValue;
-                else if (a.name < b.name) return sortValue;
+        else if (sort.by === "status") {
+            tasks.sort((a: any, b: any) => {
+                if (a.status > b.status) return sort.value;
+                else if (a.status < b.status) return -sort.value;
                 else return 0;
             });
         }
