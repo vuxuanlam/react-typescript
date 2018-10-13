@@ -4,6 +4,7 @@ import TaskControl from "../components/TaskControl";
 import TaskList from "../components/TaskList";
 import TaskItem from "components/TaskItem";
 import { filter } from "minimatch";
+import { findIndex } from "lodash";
 const uuidv4 = require('uuid/v4');
 
 class TaskManagerApp extends React.Component<any, any> {
@@ -16,6 +17,11 @@ class TaskManagerApp extends React.Component<any, any> {
             filter: {
                 name: "",
                 status: "-1"
+            },
+            keyword: "",
+            sort: {
+                by: "",
+                value: 1
             }
         }
     }
@@ -89,7 +95,11 @@ class TaskManagerApp extends React.Component<any, any> {
     onUpdateStatus = (id: any) => {
         // console.log(id)
         let { tasks } = this.state;
-        let index = this.findIndex(id);
+        // let index = this.findIndex(id);
+        let index = findIndex(tasks, (task: any) => {
+            return task.id === id;
+        })
+
         if (index !== -1) {
             tasks[index].status = !tasks[index].status;
             this.setState({
@@ -122,6 +132,22 @@ class TaskManagerApp extends React.Component<any, any> {
         // console.log(id);
     }
 
+    onSearch = (keyword: any) => {
+        this.setState({
+            keyword: keyword
+        });
+    }
+
+    onSort = (sortBy: any, sortValue: any) => {
+        // console.log(sortBy, sortValue);
+        this.setState({
+            sort: {
+                by: sortBy,
+                value: sortValue
+            }
+        })
+    }
+
     onFilter = (filterName: any, filterStatus: any) => {
         filterStatus = parseInt(filterStatus, 10);
         this.setState({
@@ -144,7 +170,7 @@ class TaskManagerApp extends React.Component<any, any> {
     }
 
     public render() {
-        let { tasks, isDisplayForm, taskEditing, filter } = this.state; // let tasks= this.state.tasks; isDisplayForm = this.state.isDisplayForm
+        let { tasks, isDisplayForm, taskEditing, filter, keyword, sort } = this.state; // let tasks= this.state.tasks; isDisplayForm = this.state.isDisplayForm
         if (filter) {
             if (filter.name) {
                 tasks = tasks.filter((task: any) => {
@@ -157,6 +183,26 @@ class TaskManagerApp extends React.Component<any, any> {
                 } else {
                     return task.status === (filter.status === 1 ? true : false)
                 }
+            });
+        }
+
+        if (keyword) {
+            tasks = tasks.filter((task: any) => {
+                return task.name.toLowerCase().indexOf(keyword) !== -1;
+            })
+        }
+        if (sort.by === "name") {
+            tasks.sort((a: any, b: any) => {
+                if (a.name > b.name) return sort.value;
+                else if (a.name < b.name) return -sort.value;
+                else return 0;
+            });
+        }
+        else if (sort.by === "status") {
+            tasks.sort((a: any, b: any) => {
+                if (a.status > b.status) return sort.value;
+                else if (a.status < b.status) return -sort.value;
+                else return 0;
             });
         }
         let eleTaskForm = isDisplayForm ? <TaskForm onSubmit={this.onSubmit} onCloseForm={this.onCloseForm} taskEditing={taskEditing} /> : "";
@@ -173,7 +219,7 @@ class TaskManagerApp extends React.Component<any, any> {
                     </div>
                     <div className={isDisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8" : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
                         <button type="button" className="btn btn-primary mr-20" onClick={this.onToggleForm}>Add New Task</button>
-                        <TaskControl />
+                        <TaskControl onSearch={this.onSearch} onSort={this.onSort} />
                         <TaskList onUpdateStatus={this.onUpdateStatus} onEditTask={this.onEditTask} onDeleteTask={this.onDeleteTask} onFilter={this.onFilter} tasks={tasks} />
                     </div>
                 </div>
