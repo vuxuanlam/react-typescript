@@ -5,6 +5,8 @@ import TaskList from "../components/TaskList";
 import TaskItem from "components/TaskItem";
 import { filter } from "minimatch";
 import { findIndex } from "lodash";
+import Demo from '../components/Demo';
+
 const uuidv4 = require('uuid/v4');
 
 class TaskManagerApp extends React.Component<any, any> {
@@ -211,6 +213,7 @@ class TaskManagerApp extends React.Component<any, any> {
             <div className="container">
                 <div className="text-center">
                     <h1>Task Manager App </h1>
+                    <Demo />
                     <hr />
                 </div>
                 <div className="row">

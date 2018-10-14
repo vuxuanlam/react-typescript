@@ -3,6 +3,7 @@ import ColorPicker from '../components/ColorPicker';
 import SizeSetting from '../components/SizeSetting';
 import Reset from '../components/Reset';
 import Result from '../components/Result';
+import Demo from '../components/Demo';
 
 export default class ColorApp extends React.Component<any, any>{
     constructor(props: any) {
