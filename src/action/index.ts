@@ -11,3 +11,10 @@ export const sort = (sort: any) => {
         sort: sort
     }
 }
+
+export const listAll = () => {
+    return {
+        type: types.LIST_ALL
+    }
+
+}

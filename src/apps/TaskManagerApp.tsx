@@ -223,7 +223,7 @@ class TaskManagerApp extends React.Component<any, any> {
                     <div className={isDisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8" : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
                         <button type="button" className="btn btn-primary mr-20" onClick={this.onToggleForm}>Add New Task</button>
                         <TaskControl onSearch={this.onSearch} onSort={this.onSort} />
-                        <TaskList onUpdateStatus={this.onUpdateStatus} onEditTask={this.onEditTask} onDeleteTask={this.onDeleteTask} onFilter={this.onFilter} tasks={tasks} />
+                        <TaskList onUpdateStatus={this.onUpdateStatus} onEditTask={this.onEditTask} onDeleteTask={this.onDeleteTask} onFilter={this.onFilter} />
                     </div>
                 </div>
             </div>

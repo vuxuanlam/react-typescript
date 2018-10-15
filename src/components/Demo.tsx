@@ -21,7 +21,7 @@ class Demo extends React.Component<any, any> {
     public render() {
         return (
             <div>
-                <h1>DẬY ĐI VỢ YÊU!!!!!!!</h1>
+                <h1>REDUX SAMPLE APP</h1>
 
                 <button type="button" className="btn btn-danger" onClick={this.OnClick}>button</button>
 

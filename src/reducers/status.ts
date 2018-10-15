@@ -1,6 +1,6 @@
 export var initialState = false
 
-var myReducer = (state = this.initialState, action: any) => {
+var myReducer = (state = initialState, action: any) => {
     if (action.type === "TOGGLE_STATUS") {
         state = !state;
     }
