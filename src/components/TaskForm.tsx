@@ -14,7 +14,6 @@ class TaskForm extends React.Component<any, any>{
     }
 
     componentWillMount() {
-        // console.log("abc")
         if (this.props.taskEditing) {
             this.setState({
                 id: this.props.taskEditing.id,

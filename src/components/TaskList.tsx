@@ -22,7 +22,6 @@ class TaskList extends React.Component<any, any>{
         })
     }
 
-
     public render() {
         let tasks = this.props.tasks;  //{ tasks } = this.props;
         let { filterName, filterStatus } = this.state;

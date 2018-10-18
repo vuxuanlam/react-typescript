@@ -25,6 +25,14 @@ export const addTask = (task: any) => {
     }
 }
 
+export const deleteTask = (task: any) => {
+    return {
+        type: types.DELETE_TASK,
+        task: task
+        
+    }
+}
+
 export const toggleForm = () => {
     return {
         type: types.TOGGLE_FORM
