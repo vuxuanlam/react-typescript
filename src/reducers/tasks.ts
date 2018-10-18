@@ -1,12 +1,8 @@
 import * as types from "../constant/ActionType";
-export var data = JSON.parse(localStorage.getItem("tasks"));
+var data = JSON.parse(localStorage.getItem("tasks"));
 const uuidv4 = require('uuid/v4');
-export var initialState = data ? data : [];
-// var initialState = [{
-//     id:1,
-//     name : "php",
-//     status : true
-// }]
+var initialState = data ? data : [];
+var index: any;
 
 var findIndex = (tasks: any, id: any) => {
     let result = -1;
@@ -34,10 +30,25 @@ var myReducer = (state = initialState, action: any) => {
             return [...state] //copy tra ve array moi de tranh truyen tham chieu
 
         case types.DELETE_TASK:
-            let index = findIndex(state, action.task.id);
+            index = findIndex(state, action.task.id);
             if (index !== -1) {
-                console.log(index);
                 state.splice(index, 1);
+                localStorage.setItem("tasks", JSON.stringify(state));
+            }
+            return [...state]
+
+        case types.EDIT_TASK:
+            console.log(action.task);
+            return [...state]
+
+        case types.UPDATE_STATUS:
+            index = findIndex(state, action.id);
+            if (index !== -1) {
+                // state[index].status = !state[index].status viet the nay ko view ra dc
+                state[index] = {
+                    ...state[index],
+                    status: !state[index].status
+                };
                 localStorage.setItem("tasks", JSON.stringify(state));
             }
             return [...state]

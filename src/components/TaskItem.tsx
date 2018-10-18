@@ -9,12 +9,15 @@ class TaskItem extends React.Component<any, any> {
     }
 
     onEditTask = () => {
-        this.props.onEditTask(this.props.task.id);
+        this.props.onEditTask(this.props.task);
+        this.props.onOpenForm()
     }
 
     onDeleteTask = () => {
         // console.log(this.props.task);
         this.props.onDeleteTask(this.props.task);
+
+        this.props.onCloseForm();
     }
 
     public render() {
@@ -51,6 +54,18 @@ const mapDispatchToProps = (dispatch: any, props: any) => {
     return {
         onDeleteTask: (task: any) => {
             dispatch(actions.deleteTask(task));
+        },
+        onEditTask: (task: any) => {
+            dispatch(actions.editTask(task));
+        },
+        onUpdateStatus: (id: any) => {
+            dispatch(actions.updateStatus(id));
+        },
+        onCloseForm: () => {
+            dispatch(actions.closeForm());
+        },
+        onOpenForm: () => {
+            dispatch(actions.openForm())
         }
     }
 }

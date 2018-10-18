@@ -29,7 +29,14 @@ export const deleteTask = (task: any) => {
     return {
         type: types.DELETE_TASK,
         task: task
-        
+
+    }
+}
+
+export const editTask = (task: any) => {
+    return {
+        type: types.EDIT_TASK,
+        task
     }
 }
 
@@ -47,5 +54,12 @@ export const closeForm = () => {
 export const openForm = () => {
     return {
         type: types.OPEN_FORM
+    }
+}
+
+export const updateStatus = (id: any) => {
+    return {
+        type: types.UPDATE_STATUS,
+        id
     }
 }

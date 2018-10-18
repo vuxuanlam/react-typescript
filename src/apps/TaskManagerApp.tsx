@@ -41,44 +41,14 @@ class TaskManagerApp extends React.Component<any, any> {
         this.props.onToggleForm();
     }
 
-    onUpdateStatus = (id: any) => {
-        // console.log(id)
-        let { tasks } = this.state;
-        // let index = this.findIndex(id);
-        let index = findIndex(tasks, (task: any) => {
-            return task.id === id;
-        })
-
-        if (index !== -1) {
-            tasks[index].status = !tasks[index].status;
-            this.setState({
-                tasks: tasks
-            });
-            localStorage.setItem("tasks", JSON.stringify(tasks));
-        }
-    }
-
-    onEditTask = (id: any) => {
-        let { tasks } = this.state;
-        let index = this.findIndex(id);
-        let taskEditing = tasks[index];
-        this.setState({
-            isDisplayForm: true,
-            taskEditing: taskEditing
-        })
-    }
-
-    // onDeleteTask = (id: any) => {
+    // onEditTask = (id: any) => {
     //     let { tasks } = this.state;
     //     let index = this.findIndex(id);
-    //     if (index !== -1) {
-    //         tasks.splice(index, 1);
-    //         this.setState({
-    //             tasks: tasks
-    //         })
-    //         localStorage.setItem("tasks", JSON.stringify(tasks));
-    //     }
-    //     // console.log(id);
+    //     let taskEditing = tasks[index];
+    //     this.setState({
+    //         isDisplayForm: true,
+    //         taskEditing: taskEditing
+    //     })
     // }
 
     onSearch = (keyword: any) => {
@@ -171,7 +141,7 @@ class TaskManagerApp extends React.Component<any, any> {
                     <div className={isDisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8" : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
                         <button type="button" className="btn btn-primary mr-20" onClick={this.onToggleForm}>Add New Task</button>
                         <TaskControl onSearch={this.onSearch} onSort={this.onSort} />
-                        <TaskList onUpdateStatus={this.onUpdateStatus} onEditTask={this.onEditTask} onFilter={this.onFilter} />
+                        <TaskList onFilter={this.onFilter} />
                     </div>
                 </div>
             </div>

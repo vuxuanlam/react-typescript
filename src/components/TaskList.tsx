@@ -30,8 +30,6 @@ class TaskList extends React.Component<any, any>{
                 key={task.id}
                 index={index + 1}
                 task={task}
-                onUpdateStatus={this.props.onUpdateStatus}
-                onEditTask={this.props.onEditTask}
             />;
         });
 
