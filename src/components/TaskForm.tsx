@@ -119,6 +119,9 @@ const mapDispatchToProps = (dispatch: any, props: any) => {
     return {
         onAddTask: (task: any) => {
             dispatch(actions.addTask(task));
+        },
+        onCloseForm: () => {
+            dispatch(actions.closeForm());
         }
     }
 }

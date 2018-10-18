@@ -1,4 +1,5 @@
 import * as React from "react";
+import { connect } from "react-redux";
 
 class TaskItem extends React.Component<any, any> {
     onUpdateStatus = () => {
@@ -25,7 +26,7 @@ class TaskItem extends React.Component<any, any> {
                         {task.status === true ? "Activated" : "Disable"}</span>
                 </td>
                 <td className="text-center">
-                    <button type="button" className="btn btn-warning" onClick= {this.onEditTask}>
+                    <button type="button" className="btn btn-warning" onClick={this.onEditTask}>
                         <span className="fa fa-pencil mr-5" ></span>Edit
                 </button>
                     &nbsp;
@@ -39,4 +40,15 @@ class TaskItem extends React.Component<any, any> {
 
 }
 
-export default TaskItem;
+const mapStateToProps = (state: any, action: any) => {
+    return {
+
+    }
+}
+const mapDispatchToprops = (dispatch: any, props: any) => {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToprops)(TaskItem);

@@ -23,7 +23,7 @@ class Demo extends React.Component<any, any> {
             <div>
                 <h1>REDUX SAMPLE APP</h1>
 
-                <button type="button" className="btn btn-danger" onClick={this.OnClick}>button</button>
+                <button type="button" className="btn btn-danger" onClick={this.OnClick}>DEMO</button>
 
             </div>
         )

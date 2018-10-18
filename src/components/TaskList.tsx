@@ -27,7 +27,13 @@ class TaskList extends React.Component<any, any>{
         let tasks = this.props.tasks;  //{ tasks } = this.props;
         let { filterName, filterStatus } = this.state;
         let eleTask = tasks.map((task: any, index: any) => {
-            return <TaskItem key={task.id} index={index + 1} task={task} onUpdateStatus={this.props.onUpdateStatus} onEditTask={this.props.onEditTask} onDeleteTask={this.props.onDeleteTask} />;
+            return <TaskItem
+                key={task.id}
+                index={index + 1}
+                task={task}
+                onUpdateStatus={this.props.onUpdateStatus}
+                onEditTask={this.props.onEditTask}
+            />;
         });
 
         return (
@@ -76,7 +82,7 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any, props: any) => {
     return {
-        
+
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
