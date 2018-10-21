@@ -20,11 +20,13 @@ class TaskForm extends React.Component<any, any>{
                 name: this.props.taskEditing.name,
                 status: this.props.taskEditing.status
             })
+            console.log("abc");
+
         }
     }
 
     componentWillReceiveProps(nextProps: any) {
-        // console.log(nextProps);
+        console.log(nextProps);
         if (nextProps && nextProps.taskEditing) {
             this.setState({
                 id: nextProps.taskEditing.id,
@@ -59,7 +61,7 @@ class TaskForm extends React.Component<any, any>{
         event.preventDefault();
         // console.log(this.state);
         // this.props.onSubmit(this.state);
-        this.props.onAddTask(this.state);
+        this.props.onSaveTask(this.state);
         this.onCloseForm();
     }
 
@@ -72,6 +74,7 @@ class TaskForm extends React.Component<any, any>{
 
     public render() {
         let { id } = this.state;
+
         return (
             <div className="panel panel-info">
                 <div className="panel-heading">
@@ -111,13 +114,14 @@ class TaskForm extends React.Component<any, any>{
 
 const mapStateToProps = (state: any) => {
     return {
+        taskEditing: state.taskEditing
     }
 }
 
 const mapDispatchToProps = (dispatch: any, props: any) => {
     return {
-        onAddTask: (task: any) => {
-            dispatch(actions.addTask(task));
+        onSaveTask: (task: any) => {
+            dispatch(actions.saveTask(task));
         },
         onCloseForm: () => {
             dispatch(actions.closeForm());

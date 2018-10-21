@@ -18,13 +18,6 @@ export const listAll = () => {
     }
 }
 
-export const addTask = (task: any) => {
-    return {
-        type: types.ADD_TASK,
-        task: task
-    }
-}
-
 export const deleteTask = (task: any) => {
     return {
         type: types.DELETE_TASK,
@@ -36,6 +29,13 @@ export const deleteTask = (task: any) => {
 export const editTask = (task: any) => {
     return {
         type: types.EDIT_TASK,
+        task
+    }
+}
+
+export const saveTask = (task: any) => {
+    return {
+        type: types.SAVE_TASK,
         task
     }
 }

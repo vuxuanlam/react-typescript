@@ -15,7 +15,6 @@ class TaskManagerApp extends React.Component<any, any> {
     constructor(props: any) {
         super(props)
         this.state = {
-            taskEditing: null,
             filter: {
                 name: "",
                 status: "-1"
@@ -40,16 +39,6 @@ class TaskManagerApp extends React.Component<any, any> {
     onToggleForm = () => {
         this.props.onToggleForm();
     }
-
-    // onEditTask = (id: any) => {
-    //     let { tasks } = this.state;
-    //     let index = this.findIndex(id);
-    //     let taskEditing = tasks[index];
-    //     this.setState({
-    //         isDisplayForm: true,
-    //         taskEditing: taskEditing
-    //     })
-    // }
 
     onSearch = (keyword: any) => {
         this.setState({
@@ -125,7 +114,7 @@ class TaskManagerApp extends React.Component<any, any> {
         //         else return 0;
         //     });
         // }
-        let eleTaskForm = isDisplayForm ? <TaskForm taskEditing={taskEditing} /> : "";
+        let eleTaskForm = isDisplayForm ? <TaskForm /> : "";
 
         return (
             <div className="container">

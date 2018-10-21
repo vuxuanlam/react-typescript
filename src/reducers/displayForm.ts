@@ -5,11 +5,10 @@ var myReducer = (state = initialState, action: any) => {
         case types.TOGGLE_FORM:
             return !state
         case types.CLOSE_FORM:
-            state = false
-            return state
+            return false
         case types.OPEN_FORM:
             state = true
-            return state
+            return true
         default: return state
     }
 }

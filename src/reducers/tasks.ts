@@ -19,15 +19,26 @@ var myReducer = (state = initialState, action: any) => {
         case types.LIST_ALL:
             return state
 
-        case types.ADD_TASK:
-            let newTask = {
-                id: uuidv4(),
+        case types.SAVE_TASK:
+            let task = {
+                id: action.task.id,
                 name: action.task.name,
-                status: action.task.status ? true : false
+                status: action.task.status
+            };
+
+            if (!task.id) {
+                task.id = uuidv4();
+                state.push(task)
+            } else {
+                index = findIndex(state, task.id);
+                state[index] = task;
             }
-            state.push(newTask);
             localStorage.setItem("tasks", JSON.stringify(state))
             return [...state] //copy tra ve array moi de tranh truyen tham chieu
+
+        // case types.SAVE_TASK:
+        //     console.log(action.task.id)
+        //     return [...state]
 
         case types.DELETE_TASK:
             index = findIndex(state, action.task.id);
@@ -35,10 +46,6 @@ var myReducer = (state = initialState, action: any) => {
                 state.splice(index, 1);
                 localStorage.setItem("tasks", JSON.stringify(state));
             }
-            return [...state]
-
-        case types.EDIT_TASK:
-            console.log(action.task);
             return [...state]
 
         case types.UPDATE_STATUS:
