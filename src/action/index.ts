@@ -63,3 +63,9 @@ export const updateStatus = (id: any) => {
         id
     }
 }
+
+export const resetEdit = () => {
+    return {
+        type: types.RESET_EDIT,
+    }
+}

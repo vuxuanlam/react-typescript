@@ -9,6 +9,8 @@ var myReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case types.EDIT_TASK:
             return action.task
+        case types.RESET_EDIT:
+            return initialState
         default: return state
     }
 }

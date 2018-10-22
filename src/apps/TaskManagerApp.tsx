@@ -38,6 +38,7 @@ class TaskManagerApp extends React.Component<any, any> {
 
     onToggleForm = () => {
         this.props.onToggleForm();
+        this.props.onReset();
     }
 
     onSearch = (keyword: any) => {
@@ -146,6 +147,9 @@ const mapDispatchToProps = (dispatch: any, props: any) => {
     return {
         onToggleForm: () => {
             dispatch(actions.toggleForm())
+        },
+        onReset: () =>{
+            dispatch(actions.resetEdit())
         }
     }
 }

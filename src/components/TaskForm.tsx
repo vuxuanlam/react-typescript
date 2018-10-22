@@ -72,6 +72,14 @@ class TaskForm extends React.Component<any, any>{
         })
     }
 
+    onSave = () =>{
+        this.setState({
+            id: '',
+            name: "",
+            status: false
+        })
+    }
+
     public render() {
         let { id } = this.state;
 
@@ -99,7 +107,7 @@ class TaskForm extends React.Component<any, any>{
                         <div className="text-center">
 
                             <button type="submit" className="btn btn-primary mr-20">
-                                <span className="fa fa-save mr-5"></span>Save
+                                <span className="fa fa-save mr-5" onClick = {this.onSave} ></span>Save
                                     </button>
                             <button type="button" className="btn btn-danger" onClick={this.onCancel}>
                                 <span className="fa fa-close mr-5"></span>Cancel
