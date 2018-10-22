@@ -1,5 +1,6 @@
 import * as React from "react";
-
+import { connect } from "react-redux";
+import * as actions from "../action/index"
 class TaskControl extends React.Component<any, any> {
     constructor(props: any) {
         super(props)
@@ -20,7 +21,8 @@ class TaskControl extends React.Component<any, any> {
     }
 
     onSearch = () => {
-        this.props.onSearch(this.state.keyword);
+        this.props.onSearchTask(this.state.keyword);
+        
     }
 
     onSort = (sortBy: any, sortValue: any) => {
@@ -86,4 +88,16 @@ class TaskControl extends React.Component<any, any> {
         )
     }
 }
-export default TaskControl;
+const mapStateToProps = (state: any) => {
+    return {
+    }
+}
+
+const mapDispatchToProps = (dispatch: any, props: any) => {
+    return {
+        onSearchTask: (keyword: any) => {
+            dispatch(actions.searchTask(keyword))
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(TaskControl);

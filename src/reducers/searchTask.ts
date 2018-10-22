@@ -1,16 +1,10 @@
 import * as types from "../constant/ActionType";
 //nen tao san initialState chu ko de rong
-export var initialState = {
-    name: "",
-    status: -1
-};
+export var initialState = "";
 var myReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case types.FILTER_TABLE:
-            return {
-                name: action.filter.name,
-                status: parseInt(action.filter.status, 10)
-            }
+        case types.SEARCH_TASK:
+            return action.keyword;
         default: return state
     }
 }

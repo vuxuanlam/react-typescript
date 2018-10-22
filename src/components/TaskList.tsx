@@ -19,25 +19,31 @@ class TaskList extends React.Component<any, any>{
             status: name === "filterStatus" ? value : this.state.filterStatus
         };
 
-        this.props.onFilterTable(filter)
+        this.props.onFilterTask(filter)
         this.setState({
             [name]: value
         })
     }
 
     public render() {
-        let { tasks, filterTable } = this.props;
-        if (filterTable) {
-            if (filterTable.name) {
+        let { tasks, filterTask, keyword } = this.props;
+        if (keyword) {
+            tasks = tasks.filter((task: any) => {
+                return task.name.toLowerCase().indexOf(keyword) !== -1;
+            })
+        }
+
+        if (filterTask) {
+            if (filterTask.name) {
                 tasks = tasks.filter((task: any) => {
-                    return task.name.toLowerCase().indexOf(filterTable.name) !== -1;
+                    return task.name.toLowerCase().indexOf(filterTask.name) !== -1;
                 });
             }
             tasks = tasks.filter((task: any) => {
-                if (filterTable.status === -1) {
+                if (filterTask.status === -1) {
                     return task;
                 } else {
-                    return task.status === (filterTable.status === 1 ? true : false)
+                    return task.status === (filterTask.status === 1 ? true : false)
                 }
             });
         }
@@ -91,14 +97,15 @@ class TaskList extends React.Component<any, any>{
 const mapStateToProps = (state: any) => {
     return {
         tasks: state.tasks,
-        filterTable: state.filterTable
+        filterTask: state.filterTask,
+        keyword: state.searchTask
     }
 }
 
 const mapDispatchToProps = (dispatch: any, props: any) => {
     return {
-        onFilterTable: (filter: any) => {
-            dispatch(actions.filterTable(filter))
+        onFilterTask: (filter: any) => {
+            dispatch(actions.filterTask(filter))
         }
     }
 }

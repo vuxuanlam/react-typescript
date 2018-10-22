@@ -1,9 +1,4 @@
 import * as types from "../constant/ActionType"
-export const status = () => {
-    return {
-        type: types.TOGGLE_STATUS
-    }
-}
 
 export const sort = (sort: any) => {
     return {
@@ -70,9 +65,16 @@ export const resetEdit = () => {
     }
 }
 
-export const filterTable = (filter: any) => {
+export const filterTask = (filter: any) => {
     return {
-        type: types.FILTER_TABLE,
+        type: types.FILTER_TASK,
         filter
+    }
+}
+
+export const searchTask = (keyword: any) => {
+    return {
+        type: types.SEARCH_TASK,
+        keyword
     }
 }
