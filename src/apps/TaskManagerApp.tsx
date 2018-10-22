@@ -14,7 +14,6 @@ class TaskManagerApp extends React.Component<any, any> {
     constructor(props: any) {
         super(props)
         this.state = {
-            keyword: "",
             sort: {
                 by: "",
                 value: 1
@@ -36,15 +35,15 @@ class TaskManagerApp extends React.Component<any, any> {
         this.props.onReset();
     }
 
-    onSort = (sortBy: any, sortValue: any) => {
-        // console.log(sortBy, sortValue);
-        this.setState({
-            sort: {
-                by: sortBy,
-                value: sortValue
-            }
-        })
-    }
+    // onSort = (sortBy: any, sortValue: any) => {
+    //     // console.log(sortBy, sortValue);
+    //     this.setState({
+    //         sort: {
+    //             by: sortBy,
+    //             value: sortValue
+    //         }
+    //     })
+    // }
 
     findIndex = (id: any) => {
         let { tasks } = this.state;
@@ -58,7 +57,7 @@ class TaskManagerApp extends React.Component<any, any> {
     }
 
     public render() {
-        let { taskEditing, filter, keyword, sort } = this.state; // let tasks= this.state.tasks; isDisplayForm = this.state.isDisplayForm
+        let { sort } = this.state; // let tasks= this.state.tasks; isDisplayForm = this.state.isDisplayForm
         let isDisplayForm = this.props.isDisplayForm;
         // if (sort.by === "name") {
         //     tasks.sort((a: any, b: any) => {
@@ -88,7 +87,7 @@ class TaskManagerApp extends React.Component<any, any> {
                     </div>
                     <div className={isDisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8" : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
                         <button type="button" className="btn btn-primary mr-20" onClick={this.onToggleForm}>Add New Task</button>
-                        <TaskControl onSort={this.onSort} />
+                        <TaskControl />
                         <TaskList />
                     </div>
                 </div>

@@ -22,24 +22,20 @@ class TaskControl extends React.Component<any, any> {
 
     onSearch = () => {
         this.props.onSearchTask(this.state.keyword);
-        
+
     }
 
     onSort = (sortBy: any, sortValue: any) => {
-        this.setState({
-            sort: {
-                by: sortBy,
-                value: sortValue
-            }
-        })
         // , () => console.log(this.state.sort.by + "-" + this.state.sort.value));
-        this.props.onSort(this.state.sort.by, this.state.sort.value);
+        this.props.onSort({
+            by: sortBy,
+            value: sortValue
+        });
     }
 
-
-
     public render() {
-        let { sort } = this.state;
+        let { sort } = this.props;
+
         return (
             <div className="row mt-15">
                 <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -90,6 +86,7 @@ class TaskControl extends React.Component<any, any> {
 }
 const mapStateToProps = (state: any) => {
     return {
+        sort: state.sort
     }
 }
 
@@ -97,6 +94,9 @@ const mapDispatchToProps = (dispatch: any, props: any) => {
     return {
         onSearchTask: (keyword: any) => {
             dispatch(actions.searchTask(keyword))
+        },
+        onSort: (sort: any) => {
+            dispatch(actions.sort(sort))
         }
     }
 }
