@@ -15,10 +15,6 @@ class TaskManagerApp extends React.Component<any, any> {
     constructor(props: any) {
         super(props)
         this.state = {
-            filter: {
-                name: "",
-                status: "-1"
-            },
             keyword: "",
             sort: {
                 by: "",
@@ -57,16 +53,6 @@ class TaskManagerApp extends React.Component<any, any> {
         })
     }
 
-    onFilter = (filterName: any, filterStatus: any) => {
-        filterStatus = parseInt(filterStatus, 10);
-        this.setState({
-            filter: {
-                name: filterName.toLowerCase(),
-                status: filterStatus
-            }
-        });
-    }
-
     findIndex = (id: any) => {
         let { tasks } = this.state;
         let result = -1;
@@ -81,21 +67,6 @@ class TaskManagerApp extends React.Component<any, any> {
     public render() {
         let { taskEditing, filter, keyword, sort } = this.state; // let tasks= this.state.tasks; isDisplayForm = this.state.isDisplayForm
         let isDisplayForm = this.props.isDisplayForm;
-        // if (filter) {
-        //     if (filter.name) {
-        //         tasks = tasks.filter((task: any) => {
-        //             return task.name.toLowerCase().indexOf(filter.name) !== -1;
-        //         });
-        //     }
-        //     tasks = tasks.filter((task: any) => {
-        //         if (filter.status === -1) {
-        //             return task;
-        //         } else {
-        //             return task.status === (filter.status === 1 ? true : false)
-        //         }
-        //     });
-        // }
-
         // if (keyword) {
         //     tasks = tasks.filter((task: any) => {
         //         return task.name.toLowerCase().indexOf(keyword) !== -1;
@@ -131,7 +102,7 @@ class TaskManagerApp extends React.Component<any, any> {
                     <div className={isDisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8" : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
                         <button type="button" className="btn btn-primary mr-20" onClick={this.onToggleForm}>Add New Task</button>
                         <TaskControl onSearch={this.onSearch} onSort={this.onSort} />
-                        <TaskList onFilter={this.onFilter} />
+                        <TaskList />
                     </div>
                 </div>
             </div>

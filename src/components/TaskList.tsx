@@ -1,6 +1,7 @@
 import * as React from "react";
 import TaskItem from "./TaskItem";
 import { connect } from "react-redux";
+import * as actions from "../action/index"
 
 class TaskList extends React.Component<any, any>{
     constructor(props: any) {
@@ -13,17 +14,33 @@ class TaskList extends React.Component<any, any>{
 
     onChange = (event: any) => {
         let { name, value } = event.target;
-        this.props.onFilter(
-            name === "filterName" ? value : this.state.filterName,
-            name === "filterStatus" ? value : this.state.filterStatus
-        )
+        let filter = {
+            name: name === "filterName" ? value : this.state.filterName,
+            status: name === "filterStatus" ? value : this.state.filterStatus
+        };
+
+        this.props.onFilterTable(filter)
         this.setState({
             [name]: value
         })
     }
 
     public render() {
-        let tasks = this.props.tasks;  //{ tasks } = this.props;
+        let { tasks, filterTable } = this.props;
+        if (filterTable) {
+            if (filterTable.name) {
+                tasks = tasks.filter((task: any) => {
+                    return task.name.toLowerCase().indexOf(filterTable.name) !== -1;
+                });
+            }
+            tasks = tasks.filter((task: any) => {
+                if (filterTable.status === -1) {
+                    return task;
+                } else {
+                    return task.status === (filterTable.status === 1 ? true : false)
+                }
+            });
+        }
         let { filterName, filterStatus } = this.state;
         let eleTask = tasks.map((task: any, index: any) => {
             return <TaskItem
@@ -73,13 +90,16 @@ class TaskList extends React.Component<any, any>{
 
 const mapStateToProps = (state: any) => {
     return {
-        tasks: state.tasks
+        tasks: state.tasks,
+        filterTable: state.filterTable
     }
 }
 
 const mapDispatchToProps = (dispatch: any, props: any) => {
     return {
-
+        onFilterTable: (filter: any) => {
+            dispatch(actions.filterTable(filter))
+        }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(TaskList);

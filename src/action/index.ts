@@ -69,3 +69,10 @@ export const resetEdit = () => {
         type: types.RESET_EDIT,
     }
 }
+
+export const filterTable = (filter: any) => {
+    return {
+        type: types.FILTER_TABLE,
+        filter
+    }
+}
