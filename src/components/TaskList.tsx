@@ -126,4 +126,5 @@ const mapDispatchToProps = (dispatch: any, props: any) => {
         }
     }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(TaskList);

@@ -14,9 +14,7 @@ class TaskItem extends React.Component<any, any> {
     }
 
     onDeleteTask = () => {
-        // console.log(this.props.task);
         this.props.onDeleteTask(this.props.task);
-
         this.props.onCloseForm();
     }
 

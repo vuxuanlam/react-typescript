@@ -35,16 +35,6 @@ class TaskManagerApp extends React.Component<any, any> {
         this.props.onReset();
     }
 
-    // onSort = (sortBy: any, sortValue: any) => {
-    //     // console.log(sortBy, sortValue);
-    //     this.setState({
-    //         sort: {
-    //             by: sortBy,
-    //             value: sortValue
-    //         }
-    //     })
-    // }
-
     findIndex = (id: any) => {
         let { tasks } = this.state;
         let result = -1;
@@ -56,23 +46,8 @@ class TaskManagerApp extends React.Component<any, any> {
         return result
     }
 
-    public render() {
-        let { sort } = this.state; // let tasks= this.state.tasks; isDisplayForm = this.state.isDisplayForm
+    public render() { 
         let isDisplayForm = this.props.isDisplayForm;
-        // if (sort.by === "name") {
-        //     tasks.sort((a: any, b: any) => {
-        //         if (a.name > b.name) return sort.value;
-        //         else if (a.name < b.name) return -sort.value;
-        //         else return 0;
-        //     });
-        // }
-        // else if (sort.by === "status") {
-        //     tasks.sort((a: any, b: any) => {
-        //         if (a.status > b.status) return sort.value;
-        //         else if (a.status < b.status) return -sort.value;
-        //         else return 0;
-        //     });
-        // }
         let eleTaskForm = isDisplayForm ? <TaskForm /> : "";
 
         return (
