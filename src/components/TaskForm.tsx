@@ -1,4 +1,7 @@
 import * as React from "react";
+import * as actions from "../action/index"
+import { connect } from "react-redux"
+
 
 class TaskForm extends React.Component<any, any>{
     constructor(props: any) {
@@ -11,7 +14,6 @@ class TaskForm extends React.Component<any, any>{
     }
 
     componentWillMount() {
-        // console.log("abc")
         if (this.props.taskEditing) {
             this.setState({
                 id: this.props.taskEditing.id,
@@ -22,7 +24,6 @@ class TaskForm extends React.Component<any, any>{
     }
 
     componentWillReceiveProps(nextProps: any) {
-        // console.log(nextProps);
         if (nextProps && nextProps.taskEditing) {
             this.setState({
                 id: nextProps.taskEditing.id,
@@ -55,8 +56,8 @@ class TaskForm extends React.Component<any, any>{
 
     onSubmit = (event: any) => {
         event.preventDefault();
-        // console.log(this.state);
-        this.props.onSubmit(this.state);
+        this.props.onSaveTask(this.state);
+        this.onCloseForm();
     }
 
     onCancel = () => {
@@ -66,8 +67,17 @@ class TaskForm extends React.Component<any, any>{
         })
     }
 
+    onSave = () => {
+        this.setState({
+            id: '',
+            name: "",
+            status: false
+        })
+    }
+
     public render() {
         let { id } = this.state;
+
         return (
             <div className="panel panel-info">
                 <div className="panel-heading">
@@ -92,7 +102,7 @@ class TaskForm extends React.Component<any, any>{
                         <div className="text-center">
 
                             <button type="submit" className="btn btn-primary mr-20">
-                                <span className="fa fa-save mr-5"></span>Save
+                                <span className="fa fa-save mr-5" onClick={this.onSave} ></span>Save
                                     </button>
                             <button type="button" className="btn btn-danger" onClick={this.onCancel}>
                                 <span className="fa fa-close mr-5"></span>Cancel
@@ -105,4 +115,21 @@ class TaskForm extends React.Component<any, any>{
     }
 }
 
-export default TaskForm;
+const mapStateToProps = (state: any) => {
+    return {
+        taskEditing: state.taskEditing
+    }
+}
+
+const mapDispatchToProps = (dispatch: any, props: any) => {
+    return {
+        onSaveTask: (task: any) => {
+            dispatch(actions.saveTask(task));
+        },
+        onCloseForm: () => {
+            dispatch(actions.closeForm());
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskForm);
