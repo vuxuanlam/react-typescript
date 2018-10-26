@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import * as actions from "../action/index"
+import * as actions from "../../action/index"
 
 class TaskItem extends React.Component<any, any> {
 

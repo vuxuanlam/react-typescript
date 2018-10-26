@@ -4,7 +4,9 @@ module.exports = {
     entry: {
         "react-sample": './src/index.tsx',
         "color-sample":'./src/color.tsx',
-        "taskManager-sample":'./src/taskManager.tsx'
+        "taskManager-sample":'./src/taskManager.tsx',
+        "cart-sample":'./src/cart.tsx',
+
     },
     module: {
         rules: [

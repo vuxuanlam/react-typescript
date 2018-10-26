@@ -1,7 +1,7 @@
 import * as React from "react";
 import TaskItem from "./TaskItem";
 import { connect } from "react-redux";
-import * as actions from "../action/index"
+import * as actions from "../../action/index"
 
 class TaskList extends React.Component<any, any>{
     constructor(props: any) {

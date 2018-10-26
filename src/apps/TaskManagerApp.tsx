@@ -1,8 +1,8 @@
 import * as React from "react";
-import TaskForm from "../components/TaskForm";
-import TaskControl from "../components/TaskControl";
-import TaskList from "../components/TaskList";
-import TaskItem from "components/TaskItem";
+import TaskForm from "../components/taskManagerApp/TaskForm";
+import TaskControl from "../components/taskManagerApp/TaskControl";
+import TaskList from "../components/taskManagerApp/TaskList";
+import TaskItem from "components/taskManagerApp/TaskItem";
 import { filter } from "minimatch";
 import { findIndex } from "lodash";
 import { connect } from "react-redux";
@@ -46,7 +46,7 @@ class TaskManagerApp extends React.Component<any, any> {
         return result
     }
 
-    public render() { 
+    public render() {
         let isDisplayForm = this.props.isDisplayForm;
         let eleTaskForm = isDisplayForm ? <TaskForm /> : "";
 
@@ -80,7 +80,7 @@ const mapDispatchToProps = (dispatch: any, props: any) => {
         onToggleForm: () => {
             dispatch(actions.toggleForm())
         },
-        onReset: () =>{
+        onReset: () => {
             dispatch(actions.resetEdit())
         }
     }
