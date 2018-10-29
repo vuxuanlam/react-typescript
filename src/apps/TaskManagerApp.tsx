@@ -30,8 +30,8 @@ class TaskManagerApp extends React.Component<any, any> {
         }
     }
 
-    onToggleForm = () => {
-        this.props.onToggleForm();
+    onOpenForm = () => {
+        this.props.onOpenForm();
         this.props.onReset();
     }
 
@@ -47,6 +47,7 @@ class TaskManagerApp extends React.Component<any, any> {
     }
 
     public render() {
+        let { sort } = this.state; 
         let isDisplayForm = this.props.isDisplayForm;
         let eleTaskForm = isDisplayForm ? <TaskForm /> : "";
 
@@ -61,7 +62,7 @@ class TaskManagerApp extends React.Component<any, any> {
                         {eleTaskForm}
                     </div>
                     <div className={isDisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8" : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
-                        <button type="button" className="btn btn-primary mr-20" onClick={this.onToggleForm}>Add New Task</button>
+                        <button type="button" className="btn btn-primary mr-20" onClick={this.onOpenForm}>Add New Task</button>
                         <TaskControl />
                         <TaskList />
                     </div>
@@ -77,8 +78,8 @@ const mapStateToProps = (state: any) => {
 }
 const mapDispatchToProps = (dispatch: any, props: any) => {
     return {
-        onToggleForm: () => {
-            dispatch(actions.toggleForm())
+        onOpenForm: () => {
+            dispatch(actions.openForm())
         },
         onReset: () => {
             dispatch(actions.resetEdit())

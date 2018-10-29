@@ -4,6 +4,8 @@ import displayForm from "./displayForm";
 import taskEditing from "./taskEditing";
 import filterTask from "./filterTask";
 import searchTask from "./searchTask";
+import productList from "./productList";
+
 import { combineReducers } from "redux";
 const myReducer = combineReducers({
     sort: sort,//sort : {by : by, value : value}
@@ -11,7 +13,8 @@ const myReducer = combineReducers({
     displayForm: displayForm,
     taskEditing: taskEditing,
     filterTask: filterTask,
-    searchTask: searchTask
+    searchTask: searchTask,
+    productList
 });
 
 export default myReducer;
