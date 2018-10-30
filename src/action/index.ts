@@ -72,3 +72,11 @@ export const searchTask = (keyword: any) => {
         keyword
     }
 }
+
+export const actAddToCart = (product: any, quantity: any) => {
+    return {
+        type: types.ADD_TO_CART,
+        product,
+        quantity
+    }
+}

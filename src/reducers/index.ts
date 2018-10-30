@@ -5,6 +5,7 @@ import taskEditing from "./taskEditing";
 import filterTask from "./filterTask";
 import searchTask from "./searchTask";
 import productList from "./productList";
+import cart from "./cart";
 
 import { combineReducers } from "redux";
 const myReducer = combineReducers({
@@ -14,7 +15,8 @@ const myReducer = combineReducers({
     taskEditing: taskEditing,
     filterTask: filterTask,
     searchTask: searchTask,
-    productList
+    productList,
+    cart
 });
 
 export default myReducer;

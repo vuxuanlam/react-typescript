@@ -11,3 +11,4 @@ export const UPDATE_STATUS = "UPDATE_STATUS";
 export const RESET_EDIT = "RESET_EDIT";
 export const FILTER_TASK = "FILTER_TASK";
 export const SEARCH_TASK = "SEARCH_TASK"
+export const ADD_TO_CART = "ADD_TO_CART"

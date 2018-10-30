@@ -5,7 +5,6 @@ export default class ProductList extends React.Component<any, any>{
 
 
     public render() {
-        let { productList } = this.props;
         return (
             <section className="section">
                 <h1 className="section-heading">Danh Sách Sản Phẩm</h1>

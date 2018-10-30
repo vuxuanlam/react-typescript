@@ -1,7 +1,7 @@
 import * as React from "react";
 import Header from "../components/cartApp/Header";
-import CartList from "../components/cartApp/CartList";
 import ProductListContainer from "../containers/productListContainer";
+import CartContainer from "../containers/cartContainer";
 import Message from "../components/cartApp/Message";
 import Footer from "../components/cartApp/Footer";
 
@@ -14,7 +14,7 @@ export default class CartApp extends React.Component<any, any>{
                     <div className="container">
                         <ProductListContainer />
                         <Message />
-                        <CartList />
+                        <CartContainer />
                     </div>
                 </main>
                 <Footer />

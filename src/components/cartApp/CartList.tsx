@@ -19,9 +19,7 @@ export default class CartList extends React.Component<any, any>{
                             </tr>
                         </thead>
                         <tbody>
-                            <CartItem />
-                            <CartItem />
-                            <CartItem />
+                            {this.props.children}
                             <CartResult />
                         </tbody>
                     </table>
