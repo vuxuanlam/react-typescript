@@ -6,9 +6,7 @@ import * as Message from "../constant/Message"
 
 class CartContainer extends React.Component<any, any>{
     public render() {
-        let { cart } = this.props;
-        console.log(cart);
-        
+        let { cart } = this.props; 
         return (
             <CartList>
                 {this.showCartItem(cart)}
@@ -17,11 +15,9 @@ class CartContainer extends React.Component<any, any>{
     }
     showCartItem = (cart: any) => {
         let result = Message.MSG_CART_EMTY;
-        console.log(cart.length);
-        
         if (cart.length > 0) {
             result = cart.map((item: any, index: any) => {
-                <CartItem key={index} item={item} />
+                return <CartItem key={index} item={item} />
             })
         }     
         return result
