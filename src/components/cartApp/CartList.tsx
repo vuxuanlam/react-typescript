@@ -20,7 +20,6 @@ export default class CartList extends React.Component<any, any>{
                         </thead>
                         <tbody>
                             {this.props.children}
-                            <CartResult />
                         </tbody>
                     </table>
                 </div>

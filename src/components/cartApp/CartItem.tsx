@@ -6,7 +6,7 @@ export default class CartItem extends React.Component<any, any>{
     }
     public render() {
         let {item} = this.props;
-        console.log(item);
+        // console.log(item);
         return (
             <tr>
             <th scope="row">
