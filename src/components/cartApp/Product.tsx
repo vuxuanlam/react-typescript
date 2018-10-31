@@ -30,7 +30,7 @@ export default class Product extends React.Component<any, any>{
                         <div className="card-footer">
                             <span className="left">{product.price}</span>
                             <span className="right">
-                                <a className="btn-floating blue-gradient" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart">
+                                <a className="btn-floating blue-gradient" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Cart" onClick={() => this.onAddToCart(product)}>
                                     <i className="fa fa-shopping-cart"></i>
                                 </a>
                             </span>
@@ -49,5 +49,8 @@ export default class Product extends React.Component<any, any>{
             result.push(<i className="fa fa-star-o"></i>);
         }
         return result;
+    }
+    onAddToCart = (product: any) => {
+        this.props.onAddToCart(product);
     }
 }
