@@ -80,3 +80,10 @@ export const actAddToCart = (product: any, quantity: any) => {
         quantity
     }
 }
+
+export const changeMessage = (message: any) => {
+    return {
+        type: types.CHANGE_MESSAGE,
+        message
+    }
+}

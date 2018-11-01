@@ -1,6 +1,4 @@
 import * as React from "react";
-import CartResult from "../cartApp/CartResult";
-import CartItem from "../cartApp/CartItem";
 
 export default class CartList extends React.Component<any, any>{
     public render() {

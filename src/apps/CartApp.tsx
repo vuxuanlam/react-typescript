@@ -2,7 +2,7 @@ import * as React from "react";
 import Header from "../components/cartApp/Header";
 import ProductListContainer from "../containers/productListContainer";
 import CartContainer from "../containers/cartContainer";
-import Message from "../components/cartApp/Message";
+import MessageContainer from "../containers/messageContainer";
 import Footer from "../components/cartApp/Footer";
 
 export default class CartApp extends React.Component<any, any>{
@@ -13,7 +13,7 @@ export default class CartApp extends React.Component<any, any>{
                 <main id="mainContainer">
                     <div className="container">
                         <ProductListContainer />
-                        <Message />
+                        <MessageContainer />
                         <CartContainer />
                     </div>
                 </main>
