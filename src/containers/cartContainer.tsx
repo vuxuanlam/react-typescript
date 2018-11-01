@@ -4,6 +4,7 @@ import CartList from "../components/cartApp/CartList"
 import CartItem from "../components/cartApp/CartItem"
 import CartResult from "../components/cartApp/CartResult"
 import * as Message from "../constant/Message"
+import { removeProduct, changeMessage } from "../action/index"
 
 class CartContainer extends React.Component<any, any>{
     public render() {
@@ -16,10 +17,11 @@ class CartContainer extends React.Component<any, any>{
         )
     }
     showCartItem = (cart: any) => {
-        let result = Message.MSG_CART_EMTY;
+        let { onDeleteProduct, onChangeMessage } = this.props
+        let result = <tr><td>{Message.MSG_CART_EMTY}</td></tr>
         if (cart.length > 0) {
             result = cart.map((item: any, index: any) => {
-                return <CartItem key={index} item={item} />
+                return <CartItem key={index} item={item} onDeleteProduct={onDeleteProduct} onChangeMessage={onChangeMessage} />
             })
         }
         return result
@@ -41,6 +43,12 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any, props: any) => {
     return {
+        onDeleteProduct: (product: any) => {
+            dispatch(removeProduct(product));
+        },
+        onChangeMessage: (message: any) => {
+            dispatch(changeMessage(message));
+        }
     }
 }
 

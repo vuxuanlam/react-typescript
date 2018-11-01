@@ -19,6 +19,13 @@ var cart = (state = initialState, action: any) => {
             }
             localStorage.setItem("CART", JSON.stringify(state));
             return [...state]
+        case types.DELETE_PRODUCT:
+            index = findProductInCart(state, product);
+            if (index !== -1) {
+                state.splice(index, 1);
+            }
+            localStorage.setItem("CART", JSON.stringify(state));
+            return [...state]
         default: return [...state]
     }
 }

@@ -1,9 +1,17 @@
 import * as React from "react";
+import * as Message from "../../constant/Message" 
 
 export default class CartItem extends React.Component<any, any>{
     showSubTotal = (price:any,quantity:any) => {
         return price* quantity
     }
+    onDelete(product:any){
+        // console.log(product)
+        let {onDeleteProduct} = this.props;
+        onDeleteProduct(product);
+        this.props.onChangeMessage(Message.MSG_DELETE_TO_CART_SUCCESS);
+    }
+
     public render() {
         let {item} = this.props;
         // console.log(item);
@@ -35,7 +43,7 @@ export default class CartItem extends React.Component<any, any>{
             <td>{this.showSubTotal(item.product.price, item.quantity)}$</td>
             <td>
                 <button type="button" className="btn btn-sm btn-primary waves-effect waves-light" data-toggle="tooltip" data-placement="top"
-                    title="" data-original-title="Remove item">
+                    title="" data-original-title="Remove item" onClick = {()=>this.onDelete(item.product)}>
                     Remove
                 </button>
             </td>

@@ -13,3 +13,4 @@ export const FILTER_TASK = "FILTER_TASK";
 export const SEARCH_TASK = "SEARCH_TASK";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const CHANGE_MESSAGE = "CHANGE_MESSAGE"
+export const DELETE_PRODUCT = "DELETE_PRODUCT"

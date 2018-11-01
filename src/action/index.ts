@@ -87,3 +87,10 @@ export const changeMessage = (message: any) => {
         message
     }
 }
+
+export const removeProduct = (product: any) => {
+    return {
+        type: types.DELETE_PRODUCT,
+        product
+    }
+}
