@@ -5,16 +5,28 @@ export default class CartItem extends React.Component<any, any>{
     showSubTotal = (price:any,quantity:any) => {
         return price* quantity
     }
-    onDelete(product:any){
-        // console.log(product)
+    onDelete = (product:any) => {
         let {onDeleteProduct} = this.props;
         onDeleteProduct(product);
         this.props.onChangeMessage(Message.MSG_DELETE_TO_CART_SUCCESS);
     }
 
+    onUpdateQuantity = (product:any, quantity:any) => {
+         if(quantity>0){
+             let {onUpdateQuantity, onChangeMessage} = this.props
+             this.setState({
+             quantity:quantity
+         });
+          onUpdateQuantity(product, quantity);
+          onChangeMessage(Message.MSG_UPDATE_TO_CART_SUCCESS);
+        }
+        //  console.log(this.state);
+         
+    }
+
     public render() {
         let {item} = this.props;
-        // console.log(item);
+        let {quantity} = item;
         return (
             <tr>
             <th scope="row">
@@ -28,14 +40,14 @@ export default class CartItem extends React.Component<any, any>{
             </td>
             <td>{item.product.price}$</td>
             <td className="center-on-small-only">
-                <span className="qty">{item.quantity} </span>
+                <span className="qty">{quantity} </span>
                 <div className="btn-group radio-group" data-toggle="buttons">
                     <label className="btn btn-sm btn-primary
-                        btn-rounded waves-effect waves-light">
+                        btn-rounded waves-effect waves-light" onClick = { () => this.onUpdateQuantity(item.product, quantity-1) }>
                         <a>—</a>
                     </label>
                     <label className="btn btn-sm btn-primary
-                        btn-rounded waves-effect waves-light">
+                        btn-rounded waves-effect waves-light" onClick = { () => this.onUpdateQuantity(item.product, quantity+1) }>
                         <a>+</a>
                     </label>
                 </div>

@@ -94,3 +94,11 @@ export const removeProduct = (product: any) => {
         product
     }
 }
+
+export const updateQuantity = (product: any, quantity: any) => {
+    return {
+        type: types.UPDATE_QUANTITY,
+        product,
+        quantity
+    }
+}

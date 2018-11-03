@@ -26,6 +26,14 @@ var cart = (state = initialState, action: any) => {
             }
             localStorage.setItem("CART", JSON.stringify(state));
             return [...state]
+
+        case types.UPDATE_QUANTITY:
+            index = findProductInCart(state, product);
+            if (index !== -1) {
+                state[index].quantity = quantity;
+            }
+            localStorage.setItem("CART", JSON.stringify(state));
+            return [...state]
         default: return [...state]
     }
 }
